@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#Displays "Best School" x10 using until loop
+
+index=0
+
+
+until [ $index -gt 9 ]
+do
+echo "Best School"
+index=$((index+1))
+done
