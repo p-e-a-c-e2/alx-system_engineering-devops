@@ -12,8 +12,8 @@ frontend http-in
 backend servers
 	mode http
 	balance roundrobin
-	server 104666-web-01 54.236.12.79:80 check
-	server 104666-web-02 54.175.71.248:80 check"
+	server 104666-web-01 3.84.238.176:80 check
+	server 104666-web-02 52.91.121.231:80 check"
 	/etc/haproxy/haproxy.cfg
 
 sudo service haproxy restart
