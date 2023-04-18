@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# a script to fix this container so that nginx runs as nginx user
+# configure nginx to run on port 8080
+config_location='/etc/nginx/sites-available/default'
+config="
+server {
+        listen 8080 default_server;
+        listen [::]:8080 default_server;
+        root /var/www/html;
+        index index.html index.htm index.nginx-debian.html;
+        server_name _;
+        location / {
+                try_files $uri $uri/ =404;
+		add_header X-Served-By oscar-ThinkPad-X250;
+        }
+        error_page 404 /404.html;
+        location  /404.html {
+            internal;
+        }
+        
+        if ($request_filename ~ redirect_me){
+            rewrite ^ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanen
+t;
+        }
+}"
+printf "%s" "$config" > "$config_location"
+chown nginx /etc/nginx/nginx.conf
+sudo -u nginx chmod u+r /etc/nginx.conf
+sudo nginx service nginx restart
